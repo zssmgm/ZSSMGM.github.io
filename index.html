@@ -45,12 +45,132 @@
 <br>
 <br>
 <br>
-<font size="5">康康</font><br/><br>
+# 康康是谁来看我的主页
 <br>
 <br>
-<iframe src="//player.bilibili.com/player.html?aid=226687271&bvid=BV1Gh411V75Z&cid=1073051620&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<iframe src="//player.bilibili.com/player.html?aid=80433022&bvid=BV1GJ411x7h7&cid=137649199&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<iframe src="//player.bilibili.com/player.html?aid=353685794&bvid=BV1SX4y1o7SD&cid=1057374641&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<iframe src="//player.bilibili.com/player.html?aid=353685794&bvid=BV1SX4y1o7SD&cid=1057374641&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<iframe src="//player.bilibili.com/player.html?aid=421697247&bvid=BV1z341187Y9&cid=442914741&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-  
+<br>
+<style>
+      .container{
+            width: 600px;
+      }
+
+      .mes-board{
+            margin: 25px 0;
+            padding: 10px;
+            background-color: gray;
+
+      }
+      .mes-board li{
+            padding: 0.7em;
+            list-style: none;
+      }
+      .mes-board li + li {
+             border-top: 1px dashed #ffffff
+       }
+      .mes-board h4{
+            display: inline;
+            margin-right: 10px;
+            font-weight: 400px;
+            color: #000000;
+      }
+      .mes-board small{
+            color: #999999;
+            float: right;
+      }
+      .mes-board div{
+            padding: 0.4em 0;
+            text-align: justify;
+            font-size: 12px;
+            margin-top: 10px;
+      }
+</style>
+<div class="container">
+       <!--发送留言-->
+
+       <div class="form-group">
+             <label for="userName">用户姓名：</label>
+             <input type="text" class="form-control" id="userName">
+       </div>
+
+       <div class="form-group">
+        <label for="userName">留言内容：</label>
+       <textarea class="form-control" rows="3" id="content"></textarea>
+
+       <button class="btn btn-default" id="sendBtn">提交</button>
+       &nbsp;&nbsp;&nbsp;
+
+       <span id="msg" style="color: red;"></span>
+               
+
+       <!--留言列表-->
+
+       <div id="msgBoard" class="mes-board">
+            <li>
+                 <h4>admin</h4>
+                 <small>2021-04-22  15:34:45</small>
+                 <div>
+                     EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEOOOOOO
+                     PPPPPPPPPPPPPPPPPPPPPPPPPPPPPEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                 </div>
+            </li>
+            <li>
+                <h4>admin</h4>
+                <small>2021-04-22  15:34:45</small>
+                <div>
+                    EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEOOOOOO
+                    PPPPPPPPPPPPPPPPPPPPPPPPPPPPPEEEEEEEEEEEEEEEEEEEEEEEEEEE
+                </div>
+           </li>
+       </div>
+  </div>
+</div>
+  -->
+  <script>
+        // 发送留言
+        $("#sendBtn").click(function(){
+                //获取用户姓名
+                var  userName = $("#userName").val();
+                //判断非空
+                if(userName == null || userName.trim() == ""){
+                      $("#msg").html("用户姓名不能为空！");
+                      return;
+                }
+                //获取留言内容
+                var  content= $("#content").val();
+
+                //判断非空
+
+                if(content.trim() == ""){
+                         $("#msg").html("请输入留言内容！");
+                         return;
+                }  
+
+            //留言数据
+
+            var  msg = "<li><h4>"+userName+"</h4><small>"+formatDate()+"</small>";
+                msg +="<div>"+content+"</div></li>";
+
+            //将留言内容追加到留言板中
+
+            $("#msgBoard").prepend(msg);
+            
+
+            //清空内容与提示信息
+
+            $("#userName").val("");
+            $("#content").val("");
+            $("msg").val("");
+                
+        });
+        
+        //格式化时间
+        function formatDate(){
+                  //获取系统当前时间
+                  var  date = new  Date();
+                  //获取年月日时分秒
+                  var str = date.getFullYear()+"-"+(parseInt(date.getMonth())+1)+"-"+date.getDate();
+                  str +" "+ date.getHours +":"+ date.getMinutes()+":"+date.getSeconds();
+
+                  return  str;
+        }
+  </script>
